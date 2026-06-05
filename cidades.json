@@ -1,0 +1,82 @@
+[
+  {
+    "nome": "São Paulo",
+    "irradiacao": 4.5288
+  },
+  {
+    "nome": "Brasília",
+    "irradiacao": 5.5438
+  },
+  {
+    "nome": "Rio de Janeiro",
+    "irradiacao": 4.7112
+  },
+  {
+    "nome": "Salvador",
+    "irradiacao": 5.2596
+  },
+  {
+    "nome": "Fortaleza",
+    "irradiacao": 5.7607
+  },
+  {
+    "nome": "Belo Horizonte",
+    "irradiacao": 5.0194
+  },
+  {
+    "nome": "Curitiba",
+    "irradiacao": 4.3694
+  },
+  {
+    "nome": "Recife",
+    "irradiacao": 6.0499
+  },
+  {
+    "nome": "Manaus",
+    "irradiacao": 4.6622
+  },
+  {
+    "nome": "Porto Alegre",
+    "irradiacao": 4.5607
+  },
+  {
+    "nome": "Washington",
+    "irradiacao": 4.1196
+  },
+  {
+    "nome": "Londres",
+    "irradiacao": 2.9398
+  },
+  {
+    "nome": "Paris",
+    "irradiacao": 3.3146
+  },
+  {
+    "nome": "Berlim",
+    "irradiacao": 2.8318
+  },
+  {
+    "nome": "Tóquio",
+    "irradiacao": 3.8873
+  },
+  {
+    "nome": "Pequim",
+    "irradiacao": 3.953
+  },
+  {
+    "nome": "Canberra",
+    "irradiacao": 4.7914
+  },
+  {
+    "nome": "Ottawa",
+    "irradiacao": 3.5952
+  },
+  {
+    "nome": "Moscow",
+    "irradiacao": 2.8601
+  },
+  {
+    "nome": "Cairo",
+    "irradiacao": 5.7127
+  }
+]
