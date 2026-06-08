@@ -35,6 +35,8 @@ public class Main {
             cidadesComIrradiacao.add(new Cidade(c.getNome(),c.getLongitude(),c.getLatitude(),irradiacao));
         }
 
+        JsonController.gerarJsonSeparados(cidadesComIrradiacao);
+
         System.out.println(JsonController.cidadesParaJson(cidadesComIrradiacao));
 
     }
