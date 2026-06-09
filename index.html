@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CosmoSun — Energia Solar Inteligente</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo-block">
+        <img src="logo-white-transparent.png" alt="CosmoSun" class="logo-img" />
+      </a>
+      <nav class="header-nav">
+        <a href="#configuracoes">Parâmetros</a>
+        <a href="#calculo">Calcular</a>
+        <a href="#resultados">Resultados</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2 class="hero-headline">A energia do sol<br/>a economia na Terra.</h2>
+      <p class="hero-body">Descubra o potencial solar do seu telhado em segundos.</p>
+      <a href="#calculo" class="btn-hero">Começar cálculo</a>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- CONFIGURAÇÕES -->
+    <section id="configuracoes" class="section">
+      <div class="section-header centered">
+        <h2 class="section-title">Parâmetros do Sistema</h2>
+        <p class="section-sub">Valores padrão baseados em equipamentos residenciais típicos. Edite conforme seu projeto.</p>
+      </div>
+
+      <div class="config-grid">
+        <div class="config-card">
+          <label class="config-label" for="potenciaPainel">Potência do painel</label>
+          <div class="input-unit-wrap">
+            <input type="number" id="potenciaPainel" class="config-input" value="550" min="1" step="1" />
+            <span class="input-unit">W</span>
+          </div>
+        </div>
+
+        <div class="config-card">
+          <label class="config-label" for="pr">Índice de desempenho (PR)</label>
+          <div class="input-unit-wrap">
+            <input type="number" id="pr" class="config-input" value="0.8" min="0.01" max="1" step="0.01" />
+            <span class="input-unit">0–1</span>
+          </div>
+        </div>
+
+        <div class="config-card">
+          <label class="config-label" for="precoPainel">Preço por painel</label>
+          <div class="input-unit-wrap">
+            <span class="input-unit prefix">R$</span>
+            <input type="number" id="precoPainel" class="config-input has-prefix" value="1200" min="0" step="1" />
+          </div>
+        </div>
+
+        <div class="config-card">
+          <label class="config-label" for="custoInstalacao">Custo de instalação</label>
+          <div class="input-unit-wrap">
+            <span class="input-unit prefix">R$</span>
+            <input type="number" id="custoInstalacao" class="config-input has-prefix" value="5000" min="0" step="1" />
+          </div>
+        </div>
+
+        <div class="config-card">
+          <label class="config-label" for="contaMinima">Conta mínima de energia</label>
+          <div class="input-unit-wrap">
+            <span class="input-unit prefix">R$</span>
+            <input type="number" id="contaMinima" class="config-input has-prefix" value="50" min="0" step="1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="reset-row">
+        <button id="btnReset" class="btn-reset">↺ Restaurar valores padrão</button>
+      </div>
+    </section>
+
+    <!-- CÁLCULO -->
+    <section id="calculo" class="section section-alt">
+      <div class="section-header centered">
+        <h2 class="section-title">Calcular Sistema Fotovoltaico</h2>
+        <p class="section-sub">Informe sua localidade e consumo para obter uma estimativa completa.</p>
+      </div>
+
+      <div class="calc-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cidade">Cidade</label>
+            <select id="cidade" class="form-select">
+              <option value="" disabled selected>Selecione uma cidade...</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div class="form-group">
+            <label class="form-label" for="consumoMensal">Consumo mensal médio</label>
+            <div class="input-unit-wrap">
+              <input type="number" id="consumoMensal" class="form-input" placeholder="ex: 400" min="1" step="1" />
+              <span class="input-unit">kWh/mês</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contaEnergia">Conta de energia média</label>
+            <div class="input-unit-wrap">
+              <span class="input-unit prefix">R$</span>
+              <input type="number" id="contaEnergia" class="form-input has-prefix" placeholder="ex: 450" min="0" step="1" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row form-action">
+          <button id="btnCalcular" class="btn-calc">Calcular agora</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="resultados" class="section hidden" aria-live="polite">
+      <div class="section-header centered">
+        <h2 class="section-title">Resultados</h2>
+        <p id="resultados-sub" class="section-sub"></p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-highlight">
+          <div class="kpi-value" id="kpi-paineis">—</div>
+          <div class="kpi-label">Painéis necessários</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-geracao">—</div>
+          <div class="kpi-label">Geração mensal</div>
+        </div>
+        <div class="kpi-card" id="kpi-card-excedente">
+          <div class="kpi-value" id="kpi-excedente">—</div>
+          <div class="kpi-label" id="kpi-excedente-label">Excedente</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-economia">—</div>
+          <div class="kpi-label">Economia mensal</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-custo">—</div>
+          <div class="kpi-label">Custo total</div>
+        </div>
+        <div class="kpi-card kpi-payback">
+          <div class="kpi-value" id="kpi-payback">—</div>
+          <div class="kpi-label">Retorno do investimento</div>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-row"><span class="detail-key">Cidade selecionada</span><span class="detail-val" id="det-cidade">—</span></div>
+        <div class="detail-row"><span class="detail-key">Irradiação média (HSP)</span><span class="detail-val" id="det-irradiacao">—</span></div>
+        <div class="detail-row"><span class="detail-key">Geração por painel/mês</span><span class="detail-val" id="det-geracao-painel">—</span></div>
+        <div class="detail-row"><span class="detail-key">Custo dos painéis</span><span class="detail-val" id="det-custo-paineis">—</span></div>
+        <div class="detail-row"><span class="detail-key">Custo de instalação</span><span class="detail-val" id="det-custo-instalacao">—</span></div>
+      </div>
+
+      <p class="resultado-obs">
+        O cálculo é uma estimativa e não considera créditos de energia, bandeiras tarifárias ou outros encargos que variam por distribuidora.
+      </p>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3 class="chart-title">Geração por quantidade de painéis</h3>
+          <p class="chart-sub">Relação entre número de painéis e produção mensal de energia</p>
+          <canvas id="chartPaineis" height="260"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-title">Retorno acumulado do investimento</h3>
+
+          <p class="chart-sub">
+            Lucro acumulado ao longo do tempo com ponto de payback destacado
+          </p>
+
+          <canvas id="chartPayback" height="260"></canvas>
+
+          <div id="erroPayback" class="erro-payback hidden">
+            Não é possível calcular o retorno do investimento porque a economia mensal é menor ou igual à conta mínima de energia.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <img src="logo-transparent.png" alt="CosmoSun" class="footer-logo"/>
+      <p class="footer-text">Planejamento fotovoltaico com dados da <strong>NASA POWER</strong>.</p>
+      <p class="footer-disc">Os dados se cálculos são estimativas — não substitui laudo técnico de engenheiro.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
